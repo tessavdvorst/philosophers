@@ -6,7 +6,7 @@
 /*   By: tvan-der <tvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/13 13:50:39 by tvan-der      #+#    #+#                 */
-/*   Updated: 2022/11/24 15:18:32 by tvan-der      ########   odam.nl         */
+/*   Updated: 2022/11/24 18:35:01 by tvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	*routine(void *arg)
 
 	philo = (t_philo *)arg;
 	if (philo->id % 2 != 0)
-		philo_sleep_think(philo);
+		usleep(100);
 	while (!check_anyone_dead(philo))
 	{
 		if (philo_eat(philo))
@@ -64,20 +64,15 @@ void	*routine(void *arg)
 	return (NULL);
 }
 
-// static void	monitor(t_philo *philo)
-// {
-// 	while (!check_anyone_dead(philo))
-// 		death_check_all(philo);
-// }
-
 static void	monitor(t_philo *philo)
 {
 	while (1)
 	{
-		if (check_num_meals(philo) == -1)
+		if (check_all_philos_finished(philo) != 0)
 			return ;
 		if (death_check_all(philo))
 			return ;
+		usleep(100);
 	}
 }
 

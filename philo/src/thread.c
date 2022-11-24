@@ -6,7 +6,7 @@
 /*   By: tvan-der <tvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/19 15:00:23 by tvan-der      #+#    #+#                 */
-/*   Updated: 2022/11/24 15:09:41 by tvan-der      ########   odam.nl         */
+/*   Updated: 2022/11/24 18:35:22 by tvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	join_philo_threads(pthread_t *thread, t_data *data)
 
 void	destroy_all_mutex(t_data *data, t_philo *philo)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < data->num_of_philos)
@@ -61,8 +61,7 @@ void	destroy_all_mutex(t_data *data, t_philo *philo)
 	}
 	pthread_mutex_destroy(data->forks);
 	pthread_mutex_destroy(&data->death_check);
-	// pthread_mutex_destroy(&data->last_meal);
-	// pthread_mutex_destroy(&data->meal_check);
+	pthread_mutex_destroy(&data->meal_check);
 }
 
 void	free_all(t_data *data, pthread_t *thread, t_philo *philo)

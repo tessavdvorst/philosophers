@@ -6,7 +6,7 @@
 /*   By: tvan-der <tvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/19 16:34:25 by tvan-der      #+#    #+#                 */
-/*   Updated: 2022/11/24 15:09:16 by tvan-der      ########   odam.nl         */
+/*   Updated: 2022/11/24 18:34:50 by tvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	print_state(int state, t_philo *philo)
 {
-	// long long	timestamp;
 	const char	*print_msg[]
 		= {
 		" has taken a fork",
@@ -24,9 +23,8 @@ void	print_state(int state, t_philo *philo)
 		" died"
 	};
 
-	// timestamp = time_since_start(philo->shared_data->start_time);
-	printf("%-6lld %-4d %s\n", time_since_start(philo->shared_data->start_time), philo->id + 1,
-		(char *)print_msg[state]);
+	printf("%-6lld %-4d %s\n", time_since_start(philo->shared_data->start_time),
+		philo->id + 1, (char *)print_msg[state]);
 }
 
 void	print_lock(int state, t_philo *philo)
@@ -43,9 +41,6 @@ void	print_lock(int state, t_philo *philo)
 		print_state(state, philo);
 	}
 	else if (state == DIE)
-	{
 		print_state(state, philo);
-		philo->shared_data->anyone_dead = true;
-	}
 	pthread_mutex_unlock(&philo->shared_data->death_check);
 }

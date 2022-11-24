@@ -6,7 +6,7 @@
 /*   By: tvan-der <tvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/04 16:08:02 by tvan-der      #+#    #+#                 */
-/*   Updated: 2022/11/24 15:00:51 by tvan-der      ########   odam.nl         */
+/*   Updated: 2022/11/24 18:34:31 by tvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ static int	mutex_arr_init(t_data *data)
 	int				i;
 
 	i = 0;
-	data->forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * data->num_of_philos);
+	data->forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t)
+			* data->num_of_philos);
 	if (!data->forks)
 		return (EXIT_FAILURE);
 	while (i < data->num_of_philos)
@@ -33,12 +34,10 @@ static int	mutex_init(t_data *data)
 {
 	if (mutex_arr_init(data) == 1)
 		return (error_msg_invalid_input(MUTEX_ARR));
-	// if (pthread_mutex_init(&(data->last_meal), NULL) != 0)
-	// 	return (error_msg_invalid_input(MUTEX));
 	if (pthread_mutex_init(&(data->death_check), NULL) != 0)
 		return (error_msg_invalid_input(MUTEX));
-	// if (pthread_mutex_init(&(data->meal_check), NULL) != 0)
-	// 	return (error_msg_invalid_input(MUTEX));
+	if (pthread_mutex_init(&(data->meal_check), NULL) != 0)
+		return (error_msg_invalid_input(MUTEX));
 	return (EXIT_SUCCESS);
 }
 

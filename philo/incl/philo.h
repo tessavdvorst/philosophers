@@ -6,7 +6,7 @@
 /*   By: tvan-der <tvan-der@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2022/10/04 11:54:03 by tvan-der      #+#    #+#                 */
-/*   Updated: 2022/11/24 15:05:09 by tvan-der      ########   odam.nl         */
+/*   Updated: 2022/11/24 17:47:55 by tvan-der      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,7 @@ typedef struct s_data
 	long long		time_to_sleep;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	death_check;
-	// pthread_mutex_t	last_meal;
-	// pthread_mutex_t	meal_check;
+	pthread_mutex_t	meal_check;
 }				t_data;
 
 typedef struct s_philo
@@ -86,8 +85,8 @@ void		print_lock(int state, t_philo *philo);
 bool		check_anyone_dead(t_philo *philo);
 int			check_num_meals(t_philo *philo);
 bool		check_satisfied(t_philo *philo);
-// void		death_check_all(t_philo *philo);
-bool	death_check_all(t_philo *philo);
+bool		death_check_all(t_philo *philo);
+int			check_all_philos_finished(t_philo *philo);
 
 //time
 long long	get_timestamp(void);
